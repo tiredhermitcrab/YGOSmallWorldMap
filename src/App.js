@@ -62,6 +62,7 @@ function Content(props) {
       states.changeMapView(true);
       states.updateswList([]);
       states.changeSelect('All')
+      localStorage.setItem('deck', states.inputDeckRef.current.value)
       kdeck = states.inputDeckRef.current.value.trim().split('\n').filter(name => {return !!cards[cardDB.translate(name)]});
       deck = kdeck.map((name) => cardDB.translate(name))
       makeList();
@@ -103,7 +104,9 @@ function Content(props) {
       <Container style={{marginTop:'10px'}}>
         <Row><h1>스몰 월드 루트 찾기 - 덱 입력</h1></Row>
         <Row>
-          <Form.Control as='textarea' ref={states.inputDeckRef} style={{minHeight:'300px', margin:'10px'}} aria-describedby='mapHelp' placeholder='하루 우라라&#10;증식의 G&#10;저택 와라시&#10;원시생명체 니비루&#10;참기 서큘러&#10;참기 시그마&#10;마이크로 코더&#10;...'/>
+          <Form.Control as='textarea' ref={states.inputDeckRef} style={{minHeight:'300px', margin:'10px'}} aria-describedby='mapHelp' placeholder='하루 우라라&#10;증식의 G&#10;저택 와라시&#10;원시생명체 니비루&#10;참기 서큘러&#10;참기 시그마&#10;마이크로 코더&#10;...'>
+            {localStorage.getItem('deck')? localStorage.getItem('deck') : ""}
+          </Form.Control>
           <Form.Text id='mapHelp' muted>
             한 줄에 메인 덱 몬스터 하나씩을 입력하세요. {recentUpdate} 이전 마스터 듀얼에 업데이트된 카드까지 지원합니다.
           </Form.Text>
