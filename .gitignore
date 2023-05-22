@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 aaa.js
+/src/cardinfo.json
+/src/ko.json
+/src/en.json
 
 package-lock.json
 
